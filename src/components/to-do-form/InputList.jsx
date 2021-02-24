@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { db } from "../../firebase";
 
 const InputList = (props) => {
   const [data, setData] = useState({
@@ -32,6 +33,13 @@ const InputList = (props) => {
     clearForm();
   };
 
+  const getRecord = async (id) => {
+    const collection = await db.collection("list").doc(id);
+    collection.get().then( record => {
+      setData(record.data());
+    } );
+  }
+
   const style = {
     input: "p-1 ml-3 bg-blue-100 rounded-md",
     button: "rounded-sm bg-green-500 p-2 m-2 text-white w-2/4 border-none",
@@ -42,7 +50,8 @@ const InputList = (props) => {
     if(!record.id){
       clearForm();
     }else{
-      setData(props.record);
+      // setData(props.record);
+      getRecord(record.id);
       setIsAdd(false);
     }
   }, [record.id]);
