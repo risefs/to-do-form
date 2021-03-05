@@ -1,7 +1,8 @@
 import React from "react";
-import useSignUp from "./CustomHooks";
+import useSignUp from "./hooks";
+import {useEffect} from "react";
 
-const Register = () => {
+const Register = (props) => {
 
     const style = {
         input: "p-1  bg-blue-100 rounded-md w-full",
@@ -9,15 +10,13 @@ const Register = () => {
         buttonSecundary:"rounded-sm bg-blue-500 p-2 m-2 text-white w-2/4 border-none hover:bg-blue-700 rounded-md",
         label: "font-bold text-md p-4",
       };
-      const { inputs, handleInputChange, handleSubmit } = useSignUp();
-
+      const { user, handleInputChange } = props;
 
   return (
     <div className="box-content self-center w-full">
         <div className="text-2xl font-medium p-4">
             Register
         </div>
-      <form onSubmit={handleSubmit}>
         <div className="shadow-2xl box-content self-center w-auto  p-2">
           <div className="p-4">
             <input
@@ -25,7 +24,7 @@ const Register = () => {
               name="email"
               className={style.input}
               placeholder="Email"
-              value={inputs.email || ""}
+              value={user.email || ""}
               onChange={handleInputChange}
             />
           </div>
@@ -35,12 +34,11 @@ const Register = () => {
               type="text"
               className={style.input}
               placeholder="Password"
-              value={inputs.password || ""}
+              value={user.password || ""}
               onChange={handleInputChange}
             />
           </div>
         </div>
-      </form>
     </div>
   );
 };

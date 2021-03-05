@@ -1,6 +1,6 @@
 import React from "react";
 
-import useSignUp from "./CustomHooks";
+import useSignUp from "./hooks";
 
 const Login = (props) => {
   const style = {
@@ -10,7 +10,7 @@ const Login = (props) => {
     label: "font-bold text-md p-4",
   };
 
-  const { inputs, handleInputChange, handleSubmit } = useSignUp();
+  const { user, handleInputChange, handleSubmit } = useSignUp();
   const {isOpen, openModal} = props;
 
   return (
@@ -26,7 +26,7 @@ const Login = (props) => {
                 name="email"
                 className={style.input}
                 placeholder="Email"
-                value={ inputs.email || '' }
+                value={ user.email || '' }
                 onChange={handleInputChange}
               />
             </div>
@@ -36,7 +36,7 @@ const Login = (props) => {
                 type="text"
                 className={style.input}
                 placeholder="Password"
-                value={inputs.password || ''}
+                value={user.password || ''}
                 onChange={handleInputChange}
               />
             </div>
