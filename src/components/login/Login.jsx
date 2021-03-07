@@ -1,7 +1,5 @@
 import React from "react";
 
-import useSignUp from "./hooks";
-
 const Login = (props) => {
   const style = {
     input: "p-1  bg-blue-100 rounded-md w-full",
@@ -10,8 +8,8 @@ const Login = (props) => {
     label: "font-bold text-md p-4",
   };
 
-  const { user, handleInputChange, handleSubmit } = useSignUp();
-  const {isOpen, openModal} = props;
+  // const { user, handleInputChange, handleSubmit } = useSignUp();
+  const {isOpen, openModal,user, handleInputChange, signIn} = props;
 
   return (
     <>
@@ -19,7 +17,6 @@ const Login = (props) => {
         <div className="container text-center p-2">
           <p className="text-2xl text-white font-medium">Login Here</p>
         </div>
-        <form onSubmit={handleSubmit}>
           <div className="shadow-2xl box-content self-center w-auto bg-gray-400 p-2">
             <div className="p-4">
               <input type="text"
@@ -41,7 +38,7 @@ const Login = (props) => {
               />
             </div>
             <div className="p-4 flex justify-center">
-              <button className={style.button} type="submit">
+              <button className={style.button} onClick={ () => signIn('login') } >
                 Login
               </button>
               <span className={style.buttonSecundary}
@@ -51,7 +48,6 @@ const Login = (props) => {
               </span>
             </div>
           </div>
-        </form>
       </div>
     </>
   );

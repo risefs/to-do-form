@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
-import './App.css';
+import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import './App.css';
 
 import Login from './components/login/Login';
 import ToDoForm from './components/to-do-form/ToDoForm';
@@ -16,11 +16,11 @@ import useSignUp from "./components/login/hooks";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { user, handleInputChange, handleSubmit,clearuser } = useSignUp();
+  const { user, handleInputChange, handleSubmit, clearUser } = useSignUp();
 
   const openModal = (e) => {
     setIsOpen(!isOpen);
-    clearuser();
+    clearUser();
   }
 
   const handlerRegister =  () => {
@@ -34,9 +34,17 @@ function App() {
     });
   }
 
-  useEffect(() => {
-    console.log('entro aca');
-  })
+  const signIn = () =>{
+    handleSubmit('login').then( (response) => {
+      setIsLogin(true);
+    }).catch( (error) => {
+        let errorCode = error.code,
+            errorMessage = error.message;
+
+            console.log(` code : ${errorCode} meessage  ${errorMessage} `);
+    });
+  }
+
 
   return (
     <>
@@ -50,6 +58,9 @@ function App() {
             <Login 
             openModal={openModal}
             isOpen={isOpen}
+            user={user}
+            handleInputChange={handleInputChange}
+            signIn={signIn}
             />
             {isOpen ?
               <Modal

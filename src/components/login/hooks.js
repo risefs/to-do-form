@@ -9,12 +9,17 @@ const useSignUp = () => {
       return await firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
   }
 
-  const clearuser = () => {
+  const signIn = async (user) => {
+    return await firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+  }
+
+  const clearUser = () => {
     setuser({});
   }
 
   const handleSubmit =   (requestType) => {
       if(requestType==='register') return createUser(user);
+      else return signIn(user);
   }
   const handleInputChange = (event) => {
     event.persist();
@@ -24,7 +29,7 @@ const useSignUp = () => {
     handleSubmit,
     handleInputChange,
     user,
-    clearuser
+    clearUser
   };
 }
 
