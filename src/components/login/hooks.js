@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import firebase from 'firebase/app';
 
-
 const useSignUp = () => {
   const [user, setuser] = useState({});
 
@@ -17,7 +16,7 @@ const useSignUp = () => {
     setuser({});
   }
 
-  const handleSubmit =   (requestType) => {
+  const handleSubmit = (requestType) => {
       if(requestType==='register') return createUser(user);
       else return signIn(user);
   }

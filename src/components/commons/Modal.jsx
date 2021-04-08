@@ -1,6 +1,6 @@
 import { React } from "react";
 
-const Modal = ({ buttons, isOpen, openModal, children: Content }) => {
+const Modal = ({ buttons, isOpen, handleModal, children: Content }) => {
   const style = {
     input: "p-1  bg-blue-100 rounded-md w-full",
     buttonPrimary:
@@ -24,7 +24,7 @@ const Modal = ({ buttons, isOpen, openModal, children: Content }) => {
                   <button
                     className={style.buttonCancel}
                     onClick={() => {
-                      openModal(isOpen);
+                      handleModal(isOpen);
                     }}
                   >
                     Cancel
@@ -33,7 +33,7 @@ const Modal = ({ buttons, isOpen, openModal, children: Content }) => {
                 {buttons.map((key, idx) => (
                   <div key={idx} className="col-start-6">
                     <button
-                      onClick={ key.action}
+                      onClick={key.action()}
                       className={
                         key.type === "primary" ? style.buttonPrimary : null
                       }
