@@ -15,7 +15,8 @@ export default function reducer(state = initialState, action) {
     case LOGIN:
       return { ...state, fetching: true };
     case LOGIN_SUCCESS:
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      // localStorage.setItem("user", JSON.stringify(action.payload));
+      sessionStorage.setItem("user", JSON.stringify(action.payload));
       return { ...state, loggedIn:true ,fetching: false, ...action.payload };
     case LOGIN_ERROR:
       return { ...state, fetching: false, error: action.payload };
@@ -40,12 +41,15 @@ export const loginIn = (user = null) => (dispatch) => {
             email: response.user.email,
           },
         });
+              return true;
+
       })
       .catch((e) => {
         dispatch({
           type: LOGIN_ERROR,
           payload: e.message,
         });
+        return false;
       });
   }
   

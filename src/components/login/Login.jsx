@@ -6,16 +6,12 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Modal from "../commons/Modal";
 import Register from "../login/Register";
-
-// const Login = ({ fetching, loggedIn , loginIn }) => {
   
 const Login = () => {
 
   const login = useSelector(store => store.login );
   const dispatch = useDispatch();
   
-  // console.log("login", login);
-
   const style = {
     input: "p-1  bg-blue-100 rounded-md w-full",
     button:
@@ -33,7 +29,10 @@ const Login = () => {
   let history = useHistory();
 
   const handleSubmit = async () => {
-    await dispatch(loginIn({ email: user, password: password }));
+    const responseLogin = await dispatch(loginIn({ email: user, password: password }));
+    if(responseLogin){
+      history.push("/dashboard");
+    }
   };
 
   const handleModal = () => {
@@ -71,12 +70,13 @@ const Login = () => {
       });
   };
 
-  useEffect(() => {
-    history.push("/dashboard");
-  }, [login.loggedIn])
+  useEffect( () => {
+    toast(login.error, {
+      type: "error",
+    });
+  },[login.error] )
 
-  if (login.fetching) return <h2>Cargando....</h2>;
-
+  
   return (
     <>
       {isOpenModal ? (
@@ -136,15 +136,5 @@ const Login = () => {
     </>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   console.log("state", state);
-//   return {
-//     fetching: state.login.fetching,
-//     loggedIn: state.login.loggedIn
-//   };
-// };
-
-// export default connect(mapStateToProps, { loginIn })(Login);
 
 export default Login;

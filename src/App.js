@@ -21,6 +21,7 @@ function App() {
     setIsOpen(!isOpen);
     clearUser();
   };
+  
 
   const handlerRegister = () => {
     handleSubmit("register").then((response) => {

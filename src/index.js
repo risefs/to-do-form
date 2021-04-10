@@ -9,6 +9,9 @@ import "./firebase";
 
 import generateStore from "./redux/store";
 
+window.onbeforeunload = function () {
+  localStorage.clear();
+};
 const store = generateStore();
 
 ReactDOM.render(
