@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import useSignUp from "./hooks";
+import useSignUp from "@/hooks/loginHooks";
 
 const style = {
     input: "p-1  bg-blue-100 rounded-md w-full",

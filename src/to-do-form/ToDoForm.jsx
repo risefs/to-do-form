@@ -3,7 +3,7 @@ import List from "./List";
 import InputList from "./InputList";
 
 import { useState, useEffect } from "react";
-import { db } from "../../firebase";
+import { db } from "../firebase";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";

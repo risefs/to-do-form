@@ -1,8 +1,8 @@
 import Component, { useState } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import Dashboard from "./components/dashboard/Dashboard";
+import Dashboard from "./pages/dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
-import Login from "./components/login/Login";
+import Login from "./pages/login/Login";
 
 const AppRouter = () => {
   const [token, setToken] = useState();
