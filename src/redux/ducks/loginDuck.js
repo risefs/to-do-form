@@ -1,5 +1,3 @@
-import { signInWithEmail } from "../../firebase";
-// constans
 let initialState = {
   loggedIn: false,
   fetching: false,
@@ -15,7 +13,6 @@ export default function reducer(state = initialState, action) {
     case LOGIN:
       return { ...state, fetching: true };
     case LOGIN_SUCCESS:
-      // localStorage.setItem("user", JSON.stringify(action.payload));
       sessionStorage.setItem("user", JSON.stringify(action.payload));
       return { ...state, loggedIn:true ,fetching: false, ...action.payload };
     case LOGIN_ERROR:
@@ -31,27 +28,6 @@ export const loginIn = (user = null) => (dispatch) => {
   dispatch({
     type: LOGIN,
   });
-
-  if(user !== null){
-    return signInWithEmail(user)
-      .then((response) => {
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: {
-            email: response.user.email,
-          },
-        });
-              return true;
-
-      })
-      .catch((e) => {
-        dispatch({
-          type: LOGIN_ERROR,
-          payload: e.message,
-        });
-        return false;
-      });
-  }
   
 
 };

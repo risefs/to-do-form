@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createUserWithFirebase, firebase } from "@/firebase";
+import {  firebase } from "@/firebase";
 import { loginIn } from "@/redux/ducks/loginDuck";
 import { ToastContainer, toast } from "react-toastify";
 import { connect, useSelector, useDispatch } from "react-redux";
@@ -57,18 +57,7 @@ const Login = () => {
       });
       return;
     }
-    createUserWithFirebase(userRegister)
-      .then((res) => {
-        toast("Register Successfull", {
-          type: "success",
-        });
-        setIsOpenModal(false);
-      })
-      .catch((error) => {
-        toast(error.message, {
-          type: "error",
-        });
-      });
+
   };
 
   useEffect(() => {

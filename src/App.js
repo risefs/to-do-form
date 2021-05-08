@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 
 import Login from '@/pages/login/Login';
-import ToDoForm from './to-do-form/ToDoForm';
+import ToDoForm from './pages/to-do-form/ToDoForm';
 import Modal from './components/commons/Modal';
 import Register from './pages/register/Register'; 
 

@@ -1,8 +1,6 @@
 import Component, { useState } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import Dashboard from "./pages/dashboard/Dashboard";
-import PrivateRoute from "./PrivateRoute";
-import Login from "./pages/login/Login";
+import ToDoForm from "./pages/to-do-form/ToDoForm";
 
 const AppRouter = () => {
   const [token, setToken] = useState();
@@ -11,20 +9,10 @@ const AppRouter = () => {
   return (
     <>
       <div>
-        <div
-          className="flex flex-col justify-center min-h-screen"
-          style={{ backgroundImage: "url(/pets_fondo.jpg)" }}
-        >
           <BrowserRouter>
-            <Route
-              exact
-              path="/"
-              component={() => <Login setToken={setToken} />}
-            />
-            <PrivateRoute  path="/dashboard" component={Dashboard} />
+            <Route exact path="/" component={ToDoForm} />
           </BrowserRouter>
         </div>
-      </div>
     </>
   );
 };

@@ -1,10 +1,11 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 //ducks
 import loginReducer from "../redux/ducks/loginDuck";
+import taskReducer from "../redux/ducks/taskDuck";
 import thunk from "redux-thunk";
 
 let rootReducer = combineReducers({
-  login: loginReducer
+  task: taskReducer,
 });
 
 const composeEnhancers = (typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
